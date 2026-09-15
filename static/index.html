@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS Control Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div class="master-layout">
+        <!-- ── Header ── -->
+        <header class="master-header glass-panel">
+            <div class="header-inner">
+                <div>
+                    <h1>IRIS Control Center</h1>
+                    <p>Motor control · ring light · hand tracking</p>
+                </div>
+                <div class="mode-toggle-wrap">
+                    <span class="mode-label" id="mode-label">Manual</span>
+                    <label class="switch" title="Toggle hand tracking">
+                        <input type="checkbox" id="hand-track-toggle">
+                        <span class="slider-toggle round"></span>
+                    </label>
+                    <span class="mode-icon" id="mode-icon">🎮</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ── Controls ── -->
+        <div class="controls-only">
+
+            <!-- Hand-track status badge (shown only in hand-track mode) -->
+            <div class="glass-card hand-status-card" id="hand-status-card" style="display:none">
+                <span class="hand-badge" id="hand-badge">No Hand</span>
+                <span class="ar-item"><span class="ar-label">M1</span><span class="ar-val" id="ar-m1">—</span></span>
+                <span class="ar-item"><span class="ar-label">M2</span><span class="ar-val" id="ar-m2">—</span></span>
+                <span class="ar-item"><span class="ar-label">M3</span><span class="ar-val" id="ar-m3">—</span></span>
+            </div>
+
+            <!-- Light -->
+            <div class="glass-card">
+                <div class="motor-header">
+                    <h2>Ring Light</h2>
+                    <span class="value-display" id="light-status-text">Off</span>
+                </div>
+                <div class="light-controls">
+                    <label class="switch">
+                        <input type="checkbox" id="light-toggle">
+                        <span class="slider-toggle round"></span>
+                    </label>
+                    <input type="color" id="light-color" value="#ffffff" class="color-picker" disabled>
+                </div>
+            </div>
+
+            <!-- Motor 1 -->
+            <div class="glass-card motor-card">
+                <div class="motor-header">
+                    <h2>Motor 1 <span class="gpio-tag">GPIO 18</span></h2>
+                    <div class="value-group">
+                        <input type="number" class="value-display value-input" id="val-1" value="0">
+                        <span class="value-unit">°</span>
+                    </div>
+                </div>
+                <input type="range" id="motor-1" min="-90" max="90" value="0" class="slider slider-blue">
+            </div>
+
+            <!-- Motor 2 -->
+            <div class="glass-card motor-card">
+                <div class="motor-header">
+                    <h2>Motor 2 <span class="gpio-tag">GPIO 23</span></h2>
+                    <div class="value-group">
+                        <input type="number" class="value-display value-input" id="val-2" value="0" min="-90" max="90">
+                        <span class="value-unit">°</span>
+                    </div>
+                </div>
+                <input type="range" id="motor-2" min="-90" max="90" value="0" class="slider slider-purple">
+            </div>
+
+            <!-- Motor 3 -->
+            <div class="glass-card motor-card">
+                <div class="motor-header">
+                    <h2>Motor 3 <span class="gpio-tag">GPIO 24</span></h2>
+                    <div class="value-group">
+                        <input type="number" class="value-display value-input" id="val-3" value="0">
+                        <span class="value-unit">°</span>
+                    </div>
+                </div>
+                <input type="range" id="motor-3" min="-90" max="90" value="0" class="slider slider-pink">
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-reset" id="reset-btn">Reset Motors</button>
+            </div>
+
+            <div class="status-indicator">
+                <span id="status-dot" class="dot connected"></span>
+                <span id="status-text">Ready</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=3"></script>
+</body>
+</html>
